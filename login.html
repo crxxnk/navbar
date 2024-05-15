@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nice</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="login">
+  <div class="container">
+    <input type="password" id="password" placeholder="Password">
+    <div class="password-strength"></div>
+    <div class="password-strength"></div>
+    <div class="password-strength"></div>
+  </div>
+
+  <script>
+    let passwordInput = document.getElementById('password');
+    let passwordStrengths = document.querySelectorAll('.password-strength');
+
+    passwordInput.addEventListener('input', function (event) {
+      let password = event.target.value;
+      let strength = Math.min(password.length, 12);
+      let degree = strength * 30; //calculate password
+      let gradientColor = strength <= 4 ? '#ff2c1c' :
+        (strength <= 8 ? '#ff9800' : '#12ff12');
+
+        passwordStrengths.forEach(passwordStrength => {
+        passwordStrength.style.background = `conic-gradient(${gradientColor} ${degree} deg, #1115 ${degree}deg)`;
+      })
+    });
+  </script>
+</body>
+
+</html>
